@@ -18,13 +18,17 @@ def markers_views(request):
             <strong>{realty.title}</strong><br>
             <strong>Комнаты:{realty.rooms}</strong><br>
             <strong>Стоимость:{realty.price}</strong><br>
-            <strong>Стоимость:{realty.get_absolute_url}</strong><br>
-            <a href="{realty.get_absolute_url()}" target="_blank">Перейти</a>
+            <strong><a href="{realty.get_absolute_url()}" target="_blank">Ссылка на объект</a></strong><br>
+
         </div>
         '''
 
         coordinates = (realty.latitude, realty.longitude)
 
-        folium.Marker(coordinates, icon=folium.Icon(color='green'),  popup=popup_html).add_to(city_map)
+        folium.Marker(
+            coordinates,
+            icon=folium.Icon(color='green'),
+            tooltip=f'{realty.title}',
+            popup=popup_html,).add_to(city_map)
 
     return render(request, 'map.html', {'city_map': city_map._repr_html_()})

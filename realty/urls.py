@@ -1,9 +1,11 @@
 
 from django.urls import path
-from realty.views import detail_views
+from realty.views import detail_views, index_views
 
+# main_page/
 urlpatterns = [
-    path('realty/<int:id>/', detail_views, name='detail_view'),
+    path('', index_views),
+    path('realty/<int:id>/', detail_views, name='detail'),
 
 ]
 

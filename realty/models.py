@@ -51,7 +51,7 @@ class Realty(models.Model):
     active = models.BooleanField()
 
     def get_absolute_url(self):
-        return reverse('detail_view', args=[self.id])
+        return reverse('detail', args=[self.id])
 
     def __str__(self):
         return f'{self.title}'
